@@ -1,3 +1,34 @@
+## 3.0.1
+
+- Fix extension code not being bundled by GitHub Actions workflow (#1902)
+
+## 3.0.0
+
+Give a warm welcome to the new **Patrol DevTools Extension**!
+
+Patrol DevTools extension allows you to explore the native view hierarchy when
+developing tests with `patrol develop`. Now you can easily see what Android /
+iOS views are currently visible and discover their properties so that they can
+be used in native selectors like `$.native.tap()`. You don’t have to use any
+external tools for that. This is just the beginning, and we plan to add more
+features to our extension in the future.
+
+Other changes:
+
+- Bump minimum supported Flutter version to 3.16
+- **BREAKING:**
+  - Remove `bindingType` parameter from `patrolTest()` function. Now only
+    `PatrolBinding` is used and it's automatically initialized (#1882)
+  - Remove `nativeAutomation` parameter from `patrolTest()` function. Now it's
+    enabled by default (#1882)
+  - This release also depends on [patrol_finders
+    v2](https://pub.dev/packages/patrol_finders/changelog#200) and includes
+    its breaking changes.
+
+- Remove dependency on `integration_test` plugin (#1882)
+
+This version requires version 2.3.0 of `patrol_cli` package.
+
 ## 2.3.2
 
 - Add `PatrolFinder.longPress()` (#1825)
