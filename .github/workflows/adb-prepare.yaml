@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dart-version: ['3.1']
+        dart-version: ['3.2']
 
     defaults:
       run:
@@ -27,7 +27,7 @@ jobs:
       - name: Set up Dart
         uses: dart-lang/setup-dart@v1
         with:
-          sdk: ${{ matrix.sdk }}
+          sdk: ${{ matrix.dart-version }}
 
       - name: dart pub get
         run: dart pub get
@@ -35,8 +35,11 @@ jobs:
       - name: dart test
         run: dart test
 
-      - name: dart analyze
-        run: dart analyze
+      - name: Run analyzer
+        if: success() || failure()
+        run: |
+          dart analyze
+          dart run custom_lint
 
       - name: dart format
         run: dart format --set-exit-if-changed .

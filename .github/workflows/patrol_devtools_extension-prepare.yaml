@@ -14,8 +14,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        flutter-version: ['3.16.0-0.5.pre']
-        flutter-channel: ['beta']
+        flutter-version: ['3.16.x']
+        flutter-channel: ['stable']
 
     defaults:
       run:
@@ -38,9 +38,11 @@ jobs:
         if: success() || failure()
         run: flutter test --coverage
 
-      - name: flutter analyze
+      - name: Run analyzer
         if: success() || failure()
-        run: flutter analyze
+        run: |
+          flutter analyze
+          dart run custom_lint
 
       - name: dart format
         if: success() || failure()
